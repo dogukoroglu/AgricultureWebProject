@@ -1,0 +1,52 @@
+﻿@using EntityLayer.Concrete
+@model List<Team>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+	<div class="card">
+		<div class="card-body">
+			<h4 class="card-title">Ekip Listesi</h4>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Görsel</th>
+							<th>İsim-Soyisim</th>
+							<th>Departman</th>
+							<th>Sil</th>
+							<th>Düzenle</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.TeamID</td>
+								<td class="py-1"><img src="@item.ImageUrl" alt="image" /></td>
+								<td>@item.PersonName</td>
+								<td>
+									@item.Title
+								</td>
+								@*<td>
+									<div class="progress">
+										<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</td>*@
+								<td><a class="btn btn-danger" href="/Team/DeleteTeam/@item.TeamID">Sil</a></td>
+								<td><a class="btn btn-success" href="/Team/EditTeam/@item.TeamID">Düzenle</a></td>
+							</tr>
+						}
+					</tbody>
+				</table>
+				<br />
+				<a class="btn btn-dark" href="/Team/AddTeam/">Yeni Ekip Arkadaşı Ekle</a>
+			</div>
+		</div>
+	</div>
+</div>
+
